@@ -123,4 +123,11 @@ const ingredients = computed(() => {
   margin: 5px 0;
   font-size: 1.1em;
 }
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+  .cocktail-title {
+    padding-left: 50px; /* Увеличенный отступ для мобильных устройств */
+  }
+}
 </style>
