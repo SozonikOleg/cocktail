@@ -16,7 +16,7 @@ const router = createRouter({
 });
 
 // Навигационный гвард
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
   // Проверяем параметр `cocktailCode`, если он есть
   const cocktailCode = to.params.cocktailCode;
 

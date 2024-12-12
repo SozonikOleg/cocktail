@@ -24,7 +24,7 @@
     <div class="cocktail-ingredients">
       <h3>List of Ingredients:</h3>
       <ul>
-        <li v-for="ingredient in ingredients" :key="ingredient.name">
+        <li v-for="ingredient in ingredients" :key="ingredient.name as string">
           <strong>{{ ingredient.measure }}</strong> {{ ingredient.name }}
         </li>
       </ul>
@@ -38,17 +38,21 @@
 import { useRoute } from "vue-router";
 import { useCocktailStore } from "../stores/cocktailStore";
 import { computed, onMounted, watch } from "vue";
+import { Cocktail } from "../stores/cocktail.types";
 
 // Получаем маршрут и хранилище
 const route = useRoute();
 const store = useCocktailStore();
 
 // Получаем код коктейля из параметров маршрута
-const cocktailCode = computed(() => route.params.cocktailCode);
+const cocktailCode = computed(() => {
+  const param = route.params.cocktailCode;
+  return Array.isArray(param) ? param[0] : param; // Берем первое значение, если это массив
+});
 
 // Функция для загрузки коктейля
 const fetchCocktail = async () => {
-  await store.fetchCocktail(cocktailCode.value);
+  await store.fetchCocktail(cocktailCode?.value);
 };
 
 // Загружаем коктейль при монтировании и следим за изменением маршрута
@@ -57,7 +61,9 @@ watch(cocktailCode, fetchCocktail);
 
 // Получаем данные из хранилища
 const { cocktails, loading, error } = store;
-const cocktail = computed(() => cocktails[cocktailCode.value]);
+const cocktail = computed<Cocktail>(
+  () => cocktails[cocktailCode.value as string]
+);
 
 // Формируем список ингредиентов
 const ingredients = computed(() => {
