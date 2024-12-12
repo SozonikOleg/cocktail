@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.app.tsbuildinfo", // Исправление пути для совместимости с кэшированием
+    "target": "ES2020", // Современный стандарт JavaScript
+    "useDefineForClassFields": true, // Совместимость с поведением class field
+    "module": "ESNext", // Современный стандарт модулей
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Библиотеки для поддержки ES2020 и браузерного API
+    "skipLibCheck": true, // Ускоряет компиляцию, пропуская проверку типов внутри node_modules
+
+    /* Bundler mode */
+    "moduleResolution": "bundler", // Режим разрешения модулей для современных сборщиков
+    "allowImportingTsExtensions": true, // Разрешает импорт файлов с расширениями
+    "isolatedModules": true, // Проверка совместимости с ES-модулями
+    "moduleDetection": "force", // Принудительное обнаружение модулей
+    "noEmit": true, // Отключает вывод файлов, полезно для проектов с webpack или vite
+    "jsx": "preserve", // Оставляет JSX для обработки сборщиком
+
+    /* Linting */
+    "strict": true, // Включает строгую проверку типов
+    "noUnusedLocals": true, // Предупреждает о неиспользуемых локальных переменных
+    "noUnusedParameters": true, // Предупреждает о неиспользуемых параметрах функций
+    "noFallthroughCasesInSwitch": true, // Предотвращает неявные переходы в switch
+    "noUncheckedSideEffectImports": true // Предупреждает об импорте с побочными эффектами
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue" // Убедитесь, что поддержка .vue файлов включена
+  ],
+  "exclude": [
+    "node_modules", // Исключение для зависимостей
+    "dist", // Исключение для скомпилированных файлов
+    "build" // Исключение для папки сборки
+  ]
+}
