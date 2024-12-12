@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute, onBeforeRouteUpdate } from "vue-router";
+import { useRoute } from "vue-router";
 import { useCocktailStore } from "../stores/cocktailStore";
 import { computed, onMounted, watch } from "vue";
 
